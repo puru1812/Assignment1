@@ -13,55 +13,28 @@ public class Box : MonoBehaviour
     public Canon canon;
     public BoxCollider2D collider;
     public Pattern pattern;
-    bool released = false;
+    public bool released = false;
+    public Box bottombox = null;
 
+    public Box topbox = null;
 
-  
     public void Release()
     {
         if(released) return;
-        released = true;
+     
 
         Vector3 myPos= transform.position;
         render.sprite = frames[4];
     
-        Debug.Log(myPos + " Releasing Check box" + gameObject.name);
-        int index = pattern.allBoxes.IndexOf(this);
-        for (int i = index+1; i < pattern.allBoxes.Count; i++)
+       // Debug.Log(myPos + " Releasing Check box" + gameObject.name);
+        released = true;
+       if(bottombox != null)
         {
-          //  Debug.Log(pattern.allBoxesPosition[i] + " Check box" + i);
-            if (pattern.allBoxes[i].gameObject != null )
-            {
-               
-                    Debug.Log(pattern.allBoxesPosition[i] + "found Check box" + i);
-                    if (Mathf.Abs(pattern.allBoxesPosition[i].x - myPos.x)<0.1f&& pattern.allBoxesPosition[i].y> myPos.y)
-                {
-
-                    Debug.Log(pattern.allBoxesPosition[i] + "now found Check box" + i);
-
-                    if (pattern.allBoxes[i].GetComponent<Box>().color == color)
-                            {
-                                pattern.allBoxes[i].GetComponent<Box>().Release();
-
-                            }
-                            else
-                            {
-                                break;
-                            }
-
-                        
-                    }
-                
-              
-               
-            }
+            if(bottombox.color==color)
+            bottombox.Release();
         }
-
-
         rig.bodyType = RigidbodyType2D.Dynamic;
-
-
-        pattern.CalculateHeight();
+      
     }
   
     private void Update()
@@ -87,7 +60,7 @@ public class Box : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void SetColor(List<Box> adjuscentBoxes)
+    public void SetColor()
     {
         render.sprite = frames[(int)color];
       

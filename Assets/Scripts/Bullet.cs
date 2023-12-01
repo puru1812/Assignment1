@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, speed * Time.deltaTime + 0.5f);
         if (hit.collider != null && hit.collider.CompareTag("Edge"))
         {
-            //Debug.Log("hitting");
+            Debug.Log("hitting");
             Reflect(hit);
 
         }
@@ -45,6 +45,7 @@ public class Bullet : MonoBehaviour
             }
         
         }
+       
        
 
     }
