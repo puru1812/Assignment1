@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour
     {
         Vector3 refelct = Vector3.Reflect(transform.up, hit.normal);
         float rot = Mathf.Atan2(refelct.y, refelct.x) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0, 0, rot);
+        transform.eulerAngles = new Vector3(0, 0,180+ rot);
     }  
 
 

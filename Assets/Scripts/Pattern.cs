@@ -23,6 +23,7 @@ public class Pattern : MonoBehaviour
         for(int i = 0; i < 250; i++)
         {
             GameObject boxnew=Instantiate(boxObject, new Vector3(x, y, 0),Quaternion.identity);
+
             boxnew.GetComponent<Box>().color = (Color)c;
             boxnew.GetComponent<Box>().canon = canon;
             boxnew.name = "box" + i;
@@ -39,10 +40,10 @@ public class Pattern : MonoBehaviour
 
             boxnew.GetComponent<Box>().SetColor();
           k++;
-            if (k == 30)
+            if (k == 45)
             {
                 k = 0;
-                int c1= (Random.Range(0, 4));
+                int c1= (Random.Range(0, 2));
               
                 c = c1;
             }
